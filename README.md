@@ -1,6 +1,8 @@
 # marmeto-components
 
-Paste the below code snippet in settings-schema.json. 
+Paste the below code snippet in settings-schema.json to get the option to enter the free-shipping-price threshold in global-settings.
+
+
 {
     "name": "Free shipping bar",
     "settings": [

@@ -1,32 +1,33 @@
 <link rel="stylesheet" href="{{ 'shipping-bar.css' |  asset_url }}">
 {% liquid
-    assign free_shipping = settings.free_shipping | times: 1
-    assign cart_price = cart.total_price | divided_by: 100
-    assign change = free_shipping | minus: cart_price
-    assign perc_change = 100
-    if change > 0
-      assign perc_change = change | times: 100 | divided_by: free_shipping
-      assign perc_change = 100 | minus: perc_change
-    endif
-  %}
-  
+  assign free_shipping = settings.free_shipping | times: 1
+  assign cart_price = cart.total_price | divided_by: 100
+  assign change = free_shipping | minus: cart_price
+  assign perc_change = 100
+  if change > 0
+    assign perc_change = change | times: 100 | divided_by: free_shipping
+    assign perc_change = 100 | minus: perc_change
+  endif
+%}
+
 {%  style  %} 
 .shipping-bar__indicator{
   width:{{ perc_change }}%;
 }
-
 .shipping-bar__indicator-svg{
   margin-left: {{ perc_change | minus: 2 }}%;
 }
 {% endstyle %}
+
+
 <marmeto-shipping-bar>
-  <div class="shipping-bar"> 
-    <div class="shipping-bar__heading">{{ settings.free_shipping_heading }}</div>
+  <div class="marmeto-shipping-bar"> 
+    <div class="marmeto-shipping-bar__heading">{{ settings.free_shipping_heading }}</div>
     
-    <div class="shipping-bar__wrapper">
-      <div class="shipping-bar__indicator">
+    <div class="marmeto-shipping-bar__wrapper">
+      <div class="marmeto-shipping-bar__indicator">
       </div>
-      <div class="shipping-bar__indicator-svg">
+      <div class="marmeto-shipping-bar__indicator-svg">
         <svg xmlns="http://www.w3.org/2000/svg" width="31.678" height="35.847" viewBox="0 0 31.678 35.847">
           <g id="Group_200290" data-name="Group 200290" transform="translate(-3.291 15.779) rotate(-45)">
           <path id="Path_301827" data-name="Path 301827" d="M.344,6.568A14.727,14.727,0,0,0,.173,2.1C.1,1.441-.237.615.3.226,2.236-1.181,2.36,4.375,3.017,5.8,4.124,4.508,5.131,2.977,6.74,2.337A2.954,2.954,0,0,1,7.9,2.045c4.156.113-3.324,3.435-2.831,4.911a12.869,12.869,0,0,1,4.963-.6,2.408,2.408,0,0,1,1.135.372c2.063,1.343-4.55,1.982-5.887,3.349" transform="translate(10.75 0)" fill="#318200"></path>
@@ -37,13 +38,13 @@
     </div>
       
     {% if perc_change < 100 %}
-      <div class="shipping-bar__message">
+      <div class="marmeto-shipping-bar__message">
         <p>
           Spent more <strong>{{ change | times: 100 | money }}</strong> extra for free shipping!
         </p>
       </div>
     {%  else  %}
-      <div class="shipping-bar__message">
+      <div class="marmeto-shipping-bar__message">
         <p><strong>Yay!!</strong> you unlocked <strong>free shipping</strong></p>
       </div> 
     {% endif %}

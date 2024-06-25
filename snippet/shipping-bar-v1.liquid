@@ -1,3 +1,5 @@
+{% comment %} {% render'shipping-bar' %}{% endcomment %}
+
 <link rel="stylesheet" href="{{ 'shipping-bar.css' |  asset_url }}">
 {% liquid
   assign free_shipping = settings.free_shipping | times: 1
